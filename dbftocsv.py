@@ -6,6 +6,11 @@ import urllib2
 import struct
 from smb.SMBHandler import SMBHandler
 
+if len(sys.argv)<2:
+	print ("ERROR - please specify the file you are calling")
+	exit()
+
+
 counter=0
 data=[]
 
@@ -103,7 +108,7 @@ def getbytes(numberofbytes):
 	return bytes
 
 director = urllib2.build_opener(SMBHandler)
-fh = director.open('smb://SUKL;paul.clevett:!!Remaster@sollatek-back/O3 Server VFP Static and Dynamic/Data/SUKL_S/s_doline.dbf')
+fh = director.open(sys.argv[1])
 data=fh.read()
 fh.close
 
